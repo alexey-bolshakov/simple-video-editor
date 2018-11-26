@@ -1,0 +1,107 @@
+<div class="video">
+  <div class="content">
+    <button class="reposition">Reposition <img src="assets/images/reposition.png" /></button>
+    <div class="player">
+      <img src="assets/images/player.png" />
+      <label class="add-subtitle">click here to add subtitle</label>
+    </div>
+  </div>
+  <div class="options">
+    <select>
+      <option>Helvetica</option>
+      <option>Helvetica Bold</option>
+      <option>Helvetica Medium</option>
+    </select>
+    <select class="font-sizes">
+      <option>100.3</option>
+    </select>
+    <div class="separator"></div>
+    <div class="btn-toolbar background">&nbsp;</div>
+    <div class="btn-toolbar foreground">A</div>
+    <div class="separator"></div>
+    <div class="btn-toolbar bold">B</div>
+    <div class="btn-toolbar italic">I</div>
+    <div class="separator"></div>
+    <div class="btn-toolbar spaceing">Spaceing</div>
+  </div>
+  <div class="sizes">
+    <div class="types">
+      <label>Video Size</label>
+      <button class="btn-outline nine-sixteen">9.16</button>
+      <button class="btn-outline one-one">1.1</button>
+      <button class="btn-outline active sixteen-nine">16.9</button>
+    </div>
+    <button class="complete" *ngIf="subtitles.length > 0" (click)="showCompleteModal()"><i class="fa fa-eye"></i>&nbsp;complete</button>
+  </div>
+</div>
+<div class="subtitles">
+  <div class="video-options">
+    <h2>Add Subtitles to Video</h2>
+    <div class="actions">
+      <button class="play"><i class="fa fa-play"></i></button>
+      <button class="reload"><i class="fa fa-undo"></i></button>
+      <button>-5s</button>
+      <button>+5s</button>
+      <span class="running">{{ currentPlay | videotime }} / {{ videoTime | videotime }}</span>
+    </div>
+    <p-slider [min]="0" [max]="100" [(ngModel)]="val" styleClass="slider-width transparent"></p-slider>
+  </div>
+  <div class="content">
+    <div class="subtitle" *ngFor="let subtitle of subtitles">
+      <div class="title">
+        <input type="text" placeholder="click here to add subtitle" />
+        <button class="btn-icon" (click)="deleteSubtitle(subtitle.id)">
+          <img src="assets/images/trash.png" />
+        </button>
+      </div>
+      <p-slider [min]="0" [max]="videoTime" [range]="true" [(ngModel)]="subtitle.time" styleClass="slider-width"></p-slider>
+      <div class="period">
+        <div class="start">
+          <div class="time">{{ subtitle.time[0] | videotime }}</div>
+          <label>Start Time</label>
+        </div>
+        <div class="divider">-</div>
+        <div class="end">
+          <div class="time">{{ subtitle.time[1] | videotime }}</div>
+          <label>Start End</label>
+        </div>
+      </div>
+    </div>
+    <div class="subtitle-add">
+      <div class="subtitle disabled">
+        <div class="title">
+          <input type="text" placeholder="Click here to add subtitle" />
+          <button class="btn-icon">
+            <img src="assets/images/trash.png" />
+          </button>
+        </div>
+        <p-slider [min]="0" [max]="videoTime" [range]="true" [(ngModel)]="defaultRange" styleClass="slider-width"></p-slider>
+        <div class="period">
+          <div class="start">
+            <div class="time">{{ defaultRange[0] | videotime }}</div>
+            <label>Start Time</label>
+          </div>
+          <div class="divider">-</div>
+          <div class="end">
+            <div class="time">{{ defaultRange[1] | videotime }}</div>
+            <label>Start End</label>
+          </div>
+        </div>
+      </div>
+      <button class="btn-add" (click)="addSubtitle()">Add Another Subtitle</button>
+    </div>
+  </div>
+</div>
+
+<div class="complete-modal" *ngIf="isShowCompleteModal">
+  <div class="modal-header">
+    <div class="actions">
+      <button><i class="fa fa-download"></i>download</button>
+      <button (click)="closeCompleteModal()"><i class="fa fa-times-circle"></i></button>
+    </div>
+  </div>
+  <div class="player">
+    <img src="assets/images/player.png" />
+    <label class="add-subtitle">click here to add subtitle</label>
+  </div>
+</div>

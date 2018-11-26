@@ -1,0 +1,54 @@
+button {
+    cursor: pointer;
+
+    &.btn-icon {
+        background: transparent;
+        border: 0 !important;
+        outline: 0 !important;
+    }
+}
+
+input {
+    background: transparent;
+    border: 1px solid #C6C5C5;
+    border-radius: 4px;
+    flex-grow: 1;
+    font-size: 14px;
+    margin-right: 4px;
+    padding: 5px 12px;
+}
+
+p-slider {
+    .slider-width {
+        background-color: #EEEEEE !important;
+        border: 1px solid #8D8D8D;
+        border-radius: 6px !important;
+        height: 12px !important;
+
+        &.transparent {
+            .ui-slider-range {
+                background: transparent;
+            }
+        }
+
+        .ui-slider-handle {
+            background-color: #999999 !important;
+            border: 0px !important;
+            border-radius: 11.5px !important;
+            height: 23px !important;
+            margin: 0 !important;
+            margin-left: -11.5px !important;
+            transform: translateY(-50%);
+            width: 23px !important;
+
+            &:hover {
+                background-color: #FF1569 !important;
+            }
+        }
+
+        .ui-slider-range {
+            background: #FF1569;
+            border-radius: 6px !important;
+        }
+    }
+}
